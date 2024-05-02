@@ -14,7 +14,9 @@ def index():
 @app.route('/generate_schedule', methods=['POST'])
 def generate_schedule():
     days = request.json['days']
-    prompt = f"Create a full workout schedule and list out every excercise with sets and reps for the following days: {', '.join(days)}. Focus on weightlifting and account for fatigue."
+    prompt = f'''Create a full workout schedule and list out every excercise with sets and reps for the following days: {', '.join(days)}. 
+    Focus on weightlifting and account for fatigue.
+    Use workout splits such as push pull legs, full body, or upper/lower depending on the amount of days chosen.'''
     completion = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
