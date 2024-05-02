@@ -3,24 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Availability</title>
+    <title>Workout Scheduler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Select Your Available Days</h1>
+    <h1>Workout Scheduler</h1>
+    <h3>Select Your Available Days</h3>
     <form id="availabilityForm">
-        <input type="checkbox" name="days" value="Monday"> Monday<br>
-        <input type="checkbox" name="days" value="Tuesday"> Tuesday<br>
-        <input type="checkbox" name="days" value="Wednesday"> Wednesday<br>
-        <input type="checkbox" name="days" value="Thursday"> Thursday<br>
-        <input type="checkbox" name="days" value="Friday"> Friday<br>
-        <input type="checkbox" name="days" value="Saturday"> Saturday<br>
-        <input type="checkbox" name="days" value="Sunday"> Sunday<br>
+        <label><input type="checkbox" name="days" value="Monday"> Monday</label><br>
+        <label><input type="checkbox" name="days" value="Tuesday"> Tuesday</label><br>
+        <label><input type="checkbox" name="days" value="Wednesday"> Wednesday</label><br>
+        <label><input type="checkbox" name="days" value="Thursday"> Thursday</label><br>
+        <label><input type="checkbox" name="days" value="Friday"> Friday</label><br>
+        <label><input type="checkbox" name="days" value="Saturday"> Saturday</label><br>
+        <label><input type="checkbox" name="days" value="Sunday"> Sunday</label><br>
         <button type="button" onclick="submitForm()">Generate Schedule</button>
     </form>
+    
     <div id="schedule"></div>
 
     <script>
         function submitForm() {
+            const responseArea = document.getElementById('schedule');
+            responseArea.textContent = 'Generating schedule...';
+
             const selectedDays = Array.from(document.querySelectorAll('input[name="days"]:checked')).map(el => el.value);
             fetch('/generate_schedule', {
                 method: 'POST',
