@@ -12,5 +12,5 @@ Use workout splits such as push pull legs, full body, or upper/lower depending o
 ```
 
 ### Technologies used
-Frontend: HTML, CSS, Javascript
-Backend: Python, Flask
+* Frontend: HTML, CSS, Javascript
+* Backend: Python, Flask
